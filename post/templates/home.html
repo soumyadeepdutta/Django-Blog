@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- masonry
+    ================================================== -->
+    <section id="bricks">
+
+        <div class="row masonry">
+
+            <!-- brick-wrapper -->
+            <div class="bricks-wrapper">
+
+                <div class="grid-sizer"></div>
+                {% for post in posts %}
+                    <article class="brick entry format-standard animate-this">
+                        {% if post.image %}
+                            <div class="entry-thumb">
+                                <img src="{{ post.image.url }}" alt="building">
+                            </div>
+                        {% endif %}
+                        <div class="entry-text">
+                            <div class="entry-header">
+
+                                <div class="entry-meta">
+                                    {% if post.category %}
+                                        <span class="cat-links"><a href="#">{{ post.category }}</a></span>
+                                    {% endif %}
+                                </div>
+
+                                <h1 class="entry-title"><a href="{% url 'details' post.id %}">{{ post.title }}</a></h1>
+                                <div class="entry-meta">
+                                    {% if post.category %}
+                                        <span class="cat-links">- By {{ post.author }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="entry-excerpt">
+                                {{ post.body|truncatewords:30 }}
+                            </div>
+
+                        <div>
+                               <a class="button button-primary full-width" href="{% url 'details' post.id %}">READ MORE</a>
+                            </div>
+                        </div>
+
+                    </article> <!-- end article -->
+                {% endfor %}
+            </div> <!-- end brick-wrapper -->
+
+        </div>
+    </section> <!-- end bricks -->
+
+{% endblock %}

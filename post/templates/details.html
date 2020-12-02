@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+   <!-- content
+   ================================================== -->
+   <section id="content-wrap" class="blog-single">
+   	<div class="row">
+   		<div class="col-twelve">
+            {% if post %}
+   			<article class="format-standard">  
+                {% if post.image %}
+   				<div class="content-media">
+						<div class="post-thumb">
+							<img src="{{ post.image.url }}">
+						</div>  
+					</div>
+                    {% endif %}
+
+					<div class="primary-content">
+
+						<h1 class="page-title">{{ post.title }}</h1>
+
+						<ul class="entry-meta">
+							<li class="date">{{ post.published_on }}</li>
+							<li class="cat">{{ post.category }}</li>
+						</ul>
+                        <p>
+                            {{ post.body }}
+                        </p>
+                    </div>
+            </article>
+            {% endif %}
+        </div>
+    </div>
+   </section>
+{% endblock %}
